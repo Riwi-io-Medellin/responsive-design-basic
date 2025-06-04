@@ -1,0 +1,218 @@
+/*
+ * ESTRATEGIA MOBILE FIRST
+ * ----------------------
+ * 1. Comenzamos con estilos base para móvil (< 768px)
+ * 2. Luego agregamos media queries para tablets (>= 768px)
+ * 3. Finalmente ajustamos para desktop (>= 1024px)
+ */
+
+/* Reset básico - Aplica a todos los tamaños */
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box hace que el padding no afecte el ancho total
+       Esto es crucial para diseño responsivo */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/*
+ * NAVEGACIÓN RESPONSIVA
+ * --------------------
+ * Versión Móvil: Menú hamburguesa con checkbox
+ * Versión Desktop: Menú horizontal
+ */
+.nav-container {
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+    /* position: relative para posicionamiento del botón hamburguesa */
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Sistema de Menú Hamburguesa sin JavaScript */
+
+/* 1. Checkbox oculto que controla el estado del menú */
+.nav-toggle {
+    display: none;
+}
+
+/* 2. Etiqueta visible que actúa como botón hamburguesa
+   - Solo visible en móvil
+   - Se oculta en >= 768px con media query */
+.nav-toggle-label {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* 3. Menú principal - Versión móvil
+   - Oculto por defecto
+   - Se muestra cuando el checkbox está :checked
+   - En desktop, siempre visible y horizontal */
+.nav-menu {
+    display: none;
+    list-style: none;
+    padding: 1rem 0;
+}
+
+/* 4. Activación del menú móvil
+   El selector ~ selecciona elementos que siguen al checkbox */
+.nav-toggle:checked ~ .nav-menu {
+    display: block;
+}
+
+/* 5. Estilos de enlaces del menú
+   - display: block para que ocupen todo el ancho en móvil
+   - En desktop se ajustarán automáticamente al layout horizontal */
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+/*
+ * IMAGEN RESPONSIVA DEL GATO
+ * -------------------------
+ * - Visible solo en móvil (< 768px)
+ * - Se oculta en tablets y desktop con media query
+ */
+.mobile-cat {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Técnica de imagen responsiva:
+   - max-width: 100% evita que la imagen se desborde
+   - height: auto mantiene la proporción */
+.mobile-cat img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/*
+ * SECCIÓN HERO RESPONSIVA
+ * -----------------------
+ * - Padding aumenta en pantallas más grandes
+ * - Tamaño de fuente se ajusta por breakpoint
+ */
+.hero {
+    background-color: #f4f4f4;
+    padding: 2rem; /* Padding base para móvil */
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2rem; /* Tamaño base para móvil */
+    margin-bottom: 1rem;
+}
+
+/*
+ * GRID DE TARJETAS RESPONSIVO
+ * -------------------------
+ * Mobile First:
+ * - 1 columna en móvil (por defecto)
+ * - 2 columnas en tablet
+ * - 3 columnas en desktop
+ */
+.cards-container {
+    padding: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr; /* Una columna en móvil */
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+/*
+ * MEDIA QUERIES - BREAKPOINTS PRINCIPALES
+ * ------------------------------------
+ */
+
+/* TABLET (>= 768px)
+   ----------------
+   - Menú se vuelve horizontal
+   - Grid cambia a 2 columnas
+   - Oculta menú hamburguesa
+   - Oculta imagen del gato */
+@media (min-width: 768px) {
+    /* Ocultar botón hamburguesa en tablet+ */
+    .nav-toggle-label {
+        display: none;
+    }
+
+    /* Convertir nav en flexbox horizontal */
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Mostrar menú horizontal */
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    /* Grid de 2 columnas */
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Aumentar tamaño de título */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Ocultar gato en tablet+ */
+    .mobile-cat {
+        display: none;
+    }
+}
+
+/* DESKTOP (>= 1024px)
+   ------------------
+   - Grid aumenta a 3 columnas
+   - Más padding en hero
+   - Fuente más grande */
+@media (min-width: 1024px) {
+    /* Grid de 3 columnas */
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Más espacio en hero */
+    .hero {
+        padding: 4rem 2rem;
+    }
+
+    /* Título más grande */
+    .hero h1 {
+        font-size: 3rem;
+    }
+}

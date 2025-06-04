@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Esta meta etiqueta es CRUCIAL para el responsive design:
+         - width=device-width: hace que el ancho coincida con el dispositivo
+         - initial-scale=1.0: establece el zoom inicial
+         Sin esta meta, el sitio no sería verdaderamente responsivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Diseño Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Nav Container: Se adapta a diferentes tamaños
+             - En móvil: menú hamburguesa con checkbox
+             - En desktop: menú horizontal completo -->
+        <nav class="nav-container">
+            <div class="logo">Logo</div>
+            <!-- Sistema de menú hamburguesa sin JavaScript:
+                 1. Checkbox oculto controla el estado (abierto/cerrado)
+                 2. Label actúa como botón visible
+                 3. CSS usa :checked para mostrar/ocultar el menú -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">☰</label>
+            <!-- Menú principal:
+                 - Móvil: oculto por defecto, se muestra al activar checkbox
+                 - Desktop: siempre visible, horizontal -->
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Hero: Adaptable a todos los tamaños
+             - Texto centrado que se ajusta automáticamente
+             - Padding responsivo que cambia según el viewport -->
+        <section class="hero">
+            <h1>Aprende Diseño Responsivo</h1>
+            <p>Un ejemplo práctico de cómo funciona el diseño web responsivo</p>
+        </section>
+
+        <!-- Grid de Tarjetas Responsivo:
+             - Móvil: 1 columna (100% ancho)
+             - Tablet: 2 columnas
+             - Desktop: 3 columnas
+             Usa CSS Grid para reorganización automática -->
+        <section class="cards-container">
+            <div class="card">
+                <h3>Mobile First</h3>
+                <p>Diseña primero para dispositivos móviles</p>
+            </div>
+            <div class="card">
+                <h3>Media Queries</h3>
+                <p>Adapta tu diseño a diferentes tamaños de pantalla</p>
+            </div>
+            <div class="card">
+                <h3>Flexbox</h3>
+                <p>Layouts flexibles y responsivos</p>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Imagen de gato: Solo visible en móvil
+         - Se muestra: cuando viewport < 768px
+         - Se oculta: cuando viewport >= 768px
+         Usa display: none/block en media queries -->
+    <div class="mobile-cat">
+        <img src="assets/images/cat-funny.gif" alt="Gato gracioso">
+    </div>
+</body>
+</html>
