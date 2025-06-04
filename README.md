@@ -50,12 +50,6 @@ Este repositorio contiene una guía completa para aprender diseño web responsiv
    - Añade nuevos componentes responsivos
    - Prueba diferentes layouts
 
-## Contribuciones
-
-Las contribuciones son bienvenidas. Si encuentras errores o tienes sugerencias, por favor:
-1. Haz fork del repositorio
-2. Crea una rama para tus cambios
-3. Envía un pull request
 
 ## Licencia
 
