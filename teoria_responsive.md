@@ -19,11 +19,70 @@ El diseño web responsivo es una técnica de diseño que permite que un sitio we
 
 ## Conceptos Fundamentales
 
-### 1. Viewport
+### 1. Viewport y su Configuración
+
+El viewport es el área visible de una página web en el dispositivo. Sin una configuración adecuada del viewport, las páginas web pueden verse muy pequeñas en dispositivos móviles.
+
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
-El viewport es el área visible de una página web en el dispositivo. Esta meta etiqueta es esencial para el diseño responsivo.
+
+#### Anatomía de la meta etiqueta viewport:
+
+1. **name="viewport"**
+   - Indica que esta meta etiqueta controla cómo se debe mostrar la página en dispositivos móviles
+   - Sin esta etiqueta, los móviles intentarían mostrar la página como si fuera desktop
+
+2. **width=device-width**
+   - Establece el ancho del viewport igual al ancho del dispositivo
+   - Sin esto, un iPhone podría intentar renderizar la página en 980px de ancho
+   - Permite que 100vw sea realmente el 100% del ancho del dispositivo
+
+3. **initial-scale=1.0**
+   - Establece el nivel de zoom inicial
+   - 1.0 significa sin zoom (ni acercado ni alejado)
+   - Previene que el navegador haga zoom automáticamente
+
+#### Otros valores posibles:
+
+```html
+<!-- Controlar el zoom máximo y mínimo -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.5">
+
+<!-- Prevenir que el usuario haga zoom (no recomendado para accesibilidad) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+```
+
+#### ¿Por qué es esencial?
+
+1. **Sin viewport meta tag:**
+   - La página se renderiza como si fuera desktop (ej: 980px)
+   - El contenido se ve muy pequeño en móviles
+   - Las media queries no funcionan correctamente
+
+2. **Con viewport meta tag:**
+   - La página se ajusta al ancho del dispositivo
+   - El contenido tiene un tamaño legible
+   - Las media queries funcionan como se espera
+
+#### Mejores Prácticas:
+
+1. **SIEMPRE incluir la meta etiqueta viewport** en sitios responsivos
+2. **EVITAR user-scalable=no** para mantener la accesibilidad
+3. **MANTENER initial-scale=1.0** para una experiencia consistente
+4. **NO USAR valores fijos** para width (ej: width=500)
+
+#### Ejemplo de cómo afecta al CSS:
+
+```css
+/* Sin viewport meta tag: 100vw = ~980px en móvil */
+/* Con viewport meta tag: 100vw = ancho real del dispositivo */
+.container {
+    width: 90vw;  /* 90% del ancho del viewport */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
 
 ### 2. Unidades Relativas
 - **em**: Relativo al tamaño de fuente del elemento padre
@@ -40,7 +99,7 @@ El viewport es el área visible de una página web en el dispositivo. Esta meta 
 }
 ```
 
-## 📱 Media Queries en Detalle
+## Media Queries en Detalle
 
 ### Sintaxis Básica
 ```css
